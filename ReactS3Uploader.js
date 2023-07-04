@@ -116,7 +116,29 @@ var ReactS3Uploader = createReactClass({
         var temporaryProps = objectAssign({}, this.props, additional);
         var inputProps = {};
 
-        var invalidProps = Object.keys(ReactS3Uploader.propTypes);
+        //var invalidProps = Object.keys(ReactS3Uploader.propTypes);
+	// The above line fails in production because React props are removed in build
+	// Hence the 'invalidProps' are listed directly here
+	var invalidProps = [
+		'signingUrl',
+		'getSignedUrl',
+		'preprocess',
+		'onSignedUrl',
+		'onProgress',
+		'onFinish',
+		'onError',
+		'signingUrlMethod',
+		'signingUrlHeaders',
+		'signingUrlQueryParams',
+		'signingUrlWithCredentials',
+		'uploadRequestHeaders',
+		'contentDisposition',
+		'server',
+		'scrubFilename',
+		's3path',
+		'inputRef',
+		'autoUpload'
+	]
 
         for(var key in temporaryProps) {
             if(temporaryProps.hasOwnProperty(key) && invalidProps.indexOf(key) === -1) {
